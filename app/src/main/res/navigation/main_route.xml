@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_route"
+    app:startDestination="@id/listFirmFragment">
+
+    <fragment
+        android:id="@+id/listFirmFragment"
+        android:name="com.hanx.recycleviewtetete.ui.film.fragments.ListFirmFragment"
+        android:label="fragment_list_firm"
+        tools:layout="@layout/fragment_list_firm" >
+        <action
+            android:id="@+id/action_listFirmFragment_to_detailFilmFragment"
+
+            app:destination="@id/detailFilmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFilmFragment"
+        android:name="com.hanx.recycleviewtetete.ui.film.fragments.DetailFilmFragment"
+        android:label="fragment_detail_film"
+        tools:layout="@layout/fragment_detail_film" >
+        <argument
+            android:name="taskName"
+            app:argType="string"
+            android:defaultValue=""
+            />
+        <argument
+            android:name="taskDescription"
+            app:argType="string"
+            android:defaultValue=""
+            />
+    </fragment>
+</navigation>
