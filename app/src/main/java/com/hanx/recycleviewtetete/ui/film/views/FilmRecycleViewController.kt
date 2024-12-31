@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hanx.recycleviewtetete.R
+import com.hanx.recycleviewtetete.network.Task
 import com.hanx.recycleviewtetete.type.Tasks
 
-class FilmRecycleViewController(val tasks:List<Tasks>, var callBack: (Tasks) -> Unit) : RecyclerView.Adapter<FilmRecycleViewController.ViewHolder>() {
-
+class FilmRecycleViewController( var callBack: (Task) -> Unit) : RecyclerView.Adapter<FilmRecycleViewController.ViewHolder>() {
+    val tasks:MutableList<Task> = mutableListOf()
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val filmName = view.findViewById<TextView>(R.id.filmName)
@@ -36,7 +37,7 @@ class FilmRecycleViewController(val tasks:List<Tasks>, var callBack: (Tasks) -> 
         return position%2
     }
     override fun onBindViewHolder(p0: ViewHolder, index: Int) {
-            p0.bind(this.tasks[index].name) {
+            p0.bind(this.tasks[index].title) {
             callBack(this.tasks[index])
         }
     }
