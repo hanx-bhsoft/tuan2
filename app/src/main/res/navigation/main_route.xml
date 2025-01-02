@@ -14,6 +14,9 @@
             android:id="@+id/action_listFirmFragment_to_detailFilmFragment"
 
             app:destination="@id/detailFilmFragment" />
+        <action
+            android:id="@+id/action_listFirmFragment_to_roomListFragment"
+            app:destination="@id/roomListFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFilmFragment"
@@ -30,5 +33,14 @@
             app:argType="string"
             android:defaultValue=""
             />
+    </fragment>
+    <fragment
+        android:id="@+id/roomListFragment"
+        android:name="com.hanx.recycleviewtetete.ui.film.fragments.RoomListFragment"
+        android:label="fragment_room_list"
+        tools:layout="@layout/fragment_room_list" >
+        <action
+            android:id="@+id/action_roomListFragment_to_detailFilmFragment"
+            app:destination="@id/detailFilmFragment" />
     </fragment>
 </navigation>

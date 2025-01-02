@@ -8,37 +8,22 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/newTaskName"
-            android:autofillHints=""
-            android:hint="@string/task_name"
-            android:inputType="text" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="45dp"
-            android:autofillHints=""
-            android:hint="@string/task_description"
-            android:id="@+id/newTaskDescription"
-            android:inputType="text"
+    android:orientation="horizontal"
+    >
 
-            />
-
-    </LinearLayout>
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="@string/add"
+        android:text="@string/load"
+        />
+    <Button
+        android:id="@+id/toRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/navigatetoroompage"
         />
 </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView

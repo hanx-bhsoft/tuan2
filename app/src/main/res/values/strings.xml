@@ -6,4 +6,6 @@
     <string name="add">Add</string>
     <string name="task_name">Task name</string>
     <string name="task_description">Description</string>
+    <string name="navigatetoroompage">navigateToRoomPage</string>
+    <string name="load">load</string>
 </resources>

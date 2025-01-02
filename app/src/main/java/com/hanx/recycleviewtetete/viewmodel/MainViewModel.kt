@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.hanx.recycleviewtetete.network.KtorClient
 import com.hanx.recycleviewtetete.network.RetrofitClient
 import com.hanx.recycleviewtetete.network.Task
+import com.hanx.recycleviewtetete.room.Taskdao
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -12,10 +14,14 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel():ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(val dao : Taskdao):ViewModel() {
     private val client  = RetrofitClient.instance
     private val ktorClient = KtorClient.client
     val tasks = MutableStateFlow<List<Task>>(emptyList())
@@ -39,6 +45,32 @@ class MainViewModel():ViewModel() {
           }
         }
     }
+    fun addTask(task: Task){
+        viewModelScope.launch(Dispatchers.IO) {
+            try{
+                dao.insert(task)
+            }
+            catch (e:Exception){
+                println(e.message)
+            }
+        }
+        reload()
+    }
+    private val taskFlow = MutableStateFlow<List<Task>>(emptyList())
+    val tasksFlow :StateFlow<List<Task>> = taskFlow
+     fun reload() {
+        viewModelScope.launch {
+            try {
+                val tasks = dao.getAll()
+                tasks.forEach { println(it.title) }
+                taskFlow.emit(tasks)
+            }
+            catch (e:Exception){
+                println(e.message)
+            }
+        }
+    }
+
     fun getTasksWithKtor(onSuccess:()-> Unit = {}){
         viewModelScope.launch {
            try{
